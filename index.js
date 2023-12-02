@@ -3,7 +3,7 @@ const path = require("path");
 const bp = require("body-parser");
 const cors = require("cors");
 
-const { open } = require("sqlite");
+const { open } = require("sqlite"); //backend sqlite3
 const sqlite3 = require("sqlite3");
 const bcrypt = require("bcrypt");
 
