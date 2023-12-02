@@ -36,9 +36,9 @@ app.use(function(err, req, res, next) {
 });
 
 // execute cron-node to perform scheduled cron job to check sites
-var {SitesModel} = require('./create_mongo_db.js'); //import sitesmodel stored in mongodb
-var {names_urls} = require('./check_sites.js'); //import promise array names_urls
-var {check_sites_scheduler} = require('./cron_task.js'); //import promise array names_urls
-check_sites_scheduler(names_urls,SitesModel); // execute check_sites_scheduler to execute cron job that update mongodb database of sites
+//var {SitesModel} = require('./create_mongo_db.js'); //import sitesmodel stored in mongodb
+//var {names_urls} = require('./check_sites.js'); //import promise array names_urls
+//var {check_sites_scheduler} = require('./cron_task.js'); //import promise array names_urls
+//check_sites_scheduler(names_urls,SitesModel); // execute check_sites_scheduler to execute cron job that update mongodb database of sites
 
 module.exports = app;

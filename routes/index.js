@@ -14,8 +14,8 @@ var get_updated_data = async (Model) => {
 
 /* GET home page. */
 router.get('/', async (req, res) => { // router to handle api call for index page (/) and async callback function
-  var json_docs = await get_updated_data(SitesModel); // execute get_updated_data func and assign array of json objects that contain updated data from mongo db
-  res.json(json_docs); // send array of json objects as a response
+  //var json_docs = await get_updated_data(SitesModel); // execute get_updated_data func and assign array of json objects that contain updated data from mongo db
+  res.json({"text":"test ok"}); // send array of json objects as a response
 });
 
 module.exports = router;
