@@ -1,0 +1,44 @@
+
+
+
+
+
+
+
+
+
+### Registering a User
+
+POST https://sample-node-login-app-deploy.onrender.com/users
+Content-Type: application/json
+
+{   
+    "name":"m phani",
+    "username":"m phani",
+    "password": "phani1234",  
+    "gender": "Male",
+    "location":"hyderabad"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+### User Login
+
+
+POST https://sample-node-login-app-deploy.onrender.com/login
+Content-Type: application/json
+
+{   
+    "username":"m phani",
+    "password": "phani1234" 
+}
