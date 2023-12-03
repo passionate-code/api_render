@@ -5,6 +5,7 @@ const cors = require("cors");
 const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
 const bcrypt = require("bcrypt");
+const mongoose = require('mongoose');
 
 const app = express();
 app.use(express.json()); //parses incoming JSON requests and puts the parsed data in req.body
@@ -45,6 +46,9 @@ const initializeDBAndServer = async () => {
   }
 };
 initializeDBAndServer();
+
+
+mongoose.connect('mongodb+srv://root:example@atlascluster.jhntkyq.mongodb.net/?retryWrites=true&w=majority').then(() => console.log('Connected!'));
 
 // User Register API
 app.post("/users/", async (request, response) => {
