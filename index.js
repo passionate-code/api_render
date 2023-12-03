@@ -2,34 +2,33 @@ const express = require("express");
 const path = require("path");
 const bp = require("body-parser");
 const cors = require("cors");
-
-const { open } = require("sqlite"); //backend sqlite3
+const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
 const bcrypt = require("bcrypt");
 
 const app = express();
-app.use(express.json());
+app.use(express.json()); //parses incoming JSON requests and puts the parsed data in req.body
 
 app.use(
   cors({
-    origin: "*",
+    origin: "*", //server accessible to any domain that requests a resource from your server via a browser
   })
 );
 
 app.use(
   cors({
-    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"], // allowable methods
   })
 );
 
-app.use(bp.json());
-app.use(bp.urlencoded({ extended: true }));
+app.use(bp.json()); // returns middleware that only parses json and only looks at requests where the Content-Type header matches the type option
+app.use(bp.urlencoded({ extended: true })); // "extended" syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded
 
 const dbPath = path.join(__dirname, "goodreads.db");
 
 let db = null;
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3001; // set port
 
 const initializeDBAndServer = async () => {
   try {
@@ -37,7 +36,7 @@ const initializeDBAndServer = async () => {
       filename: dbPath,
       driver: sqlite3.Database,
     });
-    app.listen(port, () => {
+    app.listen(port, () => { //
       console.log("Server Running at http://localhost:3000/");
     });
   } catch (e) {
