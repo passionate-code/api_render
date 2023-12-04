@@ -59,8 +59,18 @@ var SitesSchema = new Schema({
 var site_docs = [{ name: 'google', url: 'https://www.google.com/', statuscode: 200, date: new Date(Date.now())},{ name: 'wikipedia', url: 'https://www.wikipedia.org/', statuscode: 200, date: new Date(Date.now()) },{ name: 'merimen', url: 'https://www.merimen.com.my/', statuscode: 200, date: new Date(Date.now()) }]
 var SitesModel = conn.model('Sites', SitesSchema);
 var create_doc = async (doc) => {
-  var site_doc = new SitesModel(doc);
-  await site_doc.save().then(console.log(JSON.stringify(doc)+" done!")).catch((e) => console.log(e));
+  SitesModel.findOne({name: doc.name}, (err,result) => {
+    if (err) {
+      console.log(err);
+    }
+    if (!result) {
+      console.log("not found!");
+    } else {
+      console.log("found!");
+    }
+  });
+  //var site_doc = new SitesModel(doc);
+  //await site_doc.save().then(console.log(JSON.stringify(doc)+" done!")).catch((e) => console.log(e));
 }
 for (doc of site_docs) {
   create_doc(doc);
