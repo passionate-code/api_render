@@ -59,7 +59,7 @@ var SitesSchema = new Schema({
 var SitesModel = conn.model('Sites', SitesSchema);
 var create_doc = async (doc) => {
   const site_doc = new SitesModel(doc);
-  await site_doc.save().then(console.log(JSON.stringify(doc)+" done!")).catch(console.log("something went wrong!"));
+  await site_doc.save().then(console.log(JSON.stringify(doc)+" done!")).catch((e) => console.log(e));
 }
 var test = create_doc({ name: 'google', url: 'https://www.google.com/', statuscode: 200, date: new Date(Date.now())});
 //if ( typeof SitesModel !== 'undefined' && SitesModel )
