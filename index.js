@@ -6,6 +6,7 @@ const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
 const bcrypt = require("bcrypt");
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const app = express();
 app.use(express.json()); //parses incoming JSON requests and puts the parsed data in req.body
