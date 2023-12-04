@@ -48,7 +48,21 @@ const initializeDBAndServer = async () => {
 initializeDBAndServer();
 
 
-mongoose.connect('mongodb+srv://root:example@atlascluster.jhntkyq.mongodb.net/?retryWrites=true&w=majority').then(() => console.log('Connected!'));
+conn = mongoose.createConnection('mongodb+srv://root:example@atlascluster.jhntkyq.mongodb.net/?retryWrites=true&w=majority');
+var SitesSchema = new Schema({
+  name: String,
+  url: String,
+  statuscode: Number,
+  date: { type: Date, default: Date.now },
+}); // define schema
+var SitesModel = conn.model('Sites', SitesSchema);
+if ( typeof SitesModel !== 'undefined' && SitesModel )
+{
+  console.log("model created!");
+}
+else
+{ console.log("something went wrong!");
+}
 
 // User Register API
 app.post("/users/", async (request, response) => {
