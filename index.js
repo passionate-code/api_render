@@ -55,13 +55,16 @@ var SitesSchema = new Schema({
   url: String,
   statuscode: Number,
   date: { type: Date, default: Date.now },
-}); // define schema
+});
+var site_docs = [{ name: 'google', url: 'https://www.google.com/', statuscode: 200, date: new Date(Date.now())},{ name: 'wikipedia', url: 'https://www.wikipedia.org/', statuscode: 200, date: new Date(Date.now()) },{ name: 'merimen', url: 'https://www.merimen.com.my/', statuscode: 200, date: new Date(Date.now()) }]
 var SitesModel = conn.model('Sites', SitesSchema);
 var create_doc = async (doc) => {
-  const site_doc = new SitesModel(doc);
+  var site_doc = new SitesModel(doc);
   await site_doc.save().then(console.log(JSON.stringify(doc)+" done!")).catch((e) => console.log(e));
 }
-var test = create_doc({ name: 'google', url: 'https://www.google.com/', statuscode: 200, date: new Date(Date.now())});
+for (doc of site_docs) {
+  create_doc(doc);
+}
 //if ( typeof SitesModel !== 'undefined' && SitesModel )
 //{
 //  console.log("model created!");
@@ -76,7 +79,7 @@ var test = create_doc({ name: 'google', url: 'https://www.google.com/', statusco
 //}
 
 
-//var site_docs = [{ name: 'google', url: 'https://www.google.com/', statuscode: 200, date: new Date(Date.now())},{ name: 'wikipedia', url: 'https://www.wikipedia.org/', statuscode: 200, date: new Date(Date.now()) },{ name: 'merimen', url: 'https://www.merimen.com.my/', statuscode: 200, date: new Date(Date.now()) }]
+
 
 //if ( typeof SitesModel !== 'undefined' && SitesModel )
 //{
