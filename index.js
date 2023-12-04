@@ -57,25 +57,27 @@ var SitesSchema = new Schema({
   date: { type: Date, default: Date.now },
 }); // define schema
 var SitesModel = conn.model('Sites', SitesSchema);
-if ( typeof SitesModel !== 'undefined' && SitesModel )
-{
-  console.log("model created!");
-//  for (doc of site_docs) { // iterate docs
-//    create_doc(doc);
-//    console.log("doc done!");
-//  }
+var create_doc = async (doc) => {
+  const site_doc = new SitesModel(doc);
+  await site_doc.save().then(console.log(JSON.stringify(doc)+" done!")).catch(console.log("something went wrong!"));
 }
-else
-{
-  console.log("something went wrong!");
-}
+var test = create_doc({ name: 'google', url: 'https://www.google.com/', statuscode: 200, date: new Date(Date.now())});
+//if ( typeof SitesModel !== 'undefined' && SitesModel )
+//{
+//  console.log("model created!");
+////  for (doc of site_docs) { // iterate docs
+////    create_doc(doc);
+////    console.log("doc done!");
+////  }
+//}
+//else
+//{
+//  console.log("something went wrong!");
+//}
 
 
 //var site_docs = [{ name: 'google', url: 'https://www.google.com/', statuscode: 200, date: new Date(Date.now())},{ name: 'wikipedia', url: 'https://www.wikipedia.org/', statuscode: 200, date: new Date(Date.now()) },{ name: 'merimen', url: 'https://www.merimen.com.my/', statuscode: 200, date: new Date(Date.now()) }]
-//var create_doc = async (doc) => {
-//  const m = new SitesModel(doc);
-//  await m.save();
-//}
+
 //if ( typeof SitesModel !== 'undefined' && SitesModel )
 //{
 //  console.log("model created!");
