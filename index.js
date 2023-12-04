@@ -49,7 +49,7 @@ const initializeDBAndServer = async () => {
 initializeDBAndServer();
 
 
-conn = mongoose.createConnection('mongodb+srv://root:example@atlascluster.jhntkyq.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser:true,dbName:'merimen'});
+conn = mongoose.createConnection('mongodb+srv://root:example@atlascluster.jhntkyq.mongodb.net/?retryWrites=true&w=majority',{dbName:'merimen'});
 var SitesSchema = new Schema({
   name: String,
   url: String,
@@ -57,23 +57,37 @@ var SitesSchema = new Schema({
   date: { type: Date, default: Date.now },
 }); // define schema
 var SitesModel = conn.model('Sites', SitesSchema);
-var site_docs = [{ name: 'google', url: 'https://www.google.com/', statuscode: 200, date: new Date(Date.now())},{ name: 'wikipedia', url: 'https://www.wikipedia.org/', statuscode: 200, date: new Date(Date.now()) },{ name: 'merimen', url: 'https://www.merimen.com.my/', statuscode: 200, date: new Date(Date.now()) }]
-var create_doc = async (doc) => {
-  const m = new SitesModel(doc);
-  await m.save();
-}
 if ( typeof SitesModel !== 'undefined' && SitesModel )
 {
   console.log("model created!");
-  for (doc of site_docs) { // iterate docs
-    create_doc(doc);
-    console.log("doc done!");
-  }
+//  for (doc of site_docs) { // iterate docs
+//    create_doc(doc);
+//    console.log("doc done!");
+//  }
 }
 else
 {
   console.log("something went wrong!");
 }
+
+
+//var site_docs = [{ name: 'google', url: 'https://www.google.com/', statuscode: 200, date: new Date(Date.now())},{ name: 'wikipedia', url: 'https://www.wikipedia.org/', statuscode: 200, date: new Date(Date.now()) },{ name: 'merimen', url: 'https://www.merimen.com.my/', statuscode: 200, date: new Date(Date.now()) }]
+//var create_doc = async (doc) => {
+//  const m = new SitesModel(doc);
+//  await m.save();
+//}
+//if ( typeof SitesModel !== 'undefined' && SitesModel )
+//{
+//  console.log("model created!");
+//  for (doc of site_docs) { // iterate docs
+//    create_doc(doc);
+//    console.log("doc done!");
+//  }
+//}
+//else
+//{
+//  console.log("something went wrong!");
+//}
 
 // User Register API
 app.post("/users/", async (request, response) => {
