@@ -46,7 +46,7 @@ var get_updated_data = async (Model) => {
 
 app.get("/", async (request, response) => {
   var json_docs = await get_updated_data(SitesModel); // execute get_updated_data func and assign array of json objects that contain updated data from mongo db
-  res.json(json_docs); // send array of json objects as a response
+  response.json(json_docs); // send array of json objects as a response
 });
 
 check_sites_scheduler(names_urls,SitesModel); 
